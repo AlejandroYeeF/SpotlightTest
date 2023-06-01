@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SuperbackCiamOTP</name>
+    </assembly>
+    <members>
+        <member name="P:SuperbackCiamOTP.Entities.UserMetaData.PhoneNumber">
+            <example>5215555555555</example>
+        </member>
+        <member name="P:SuperbackCiamOTP.Entities.UserMetaData.Email">
+            <example>AnyEmail@cool.domain.com</example>
+        </member>
+        <member name="P:SuperbackCiamOTP.Entities.AccessResponse.AccessToken">
+            <example>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZ</example>
+        </member>
+        <member name="P:SuperbackCiamOTP.Entities.SendOtpRequest.Channel">
+            <example>SMS</example>
+        </member>
+        <member name="P:SuperbackCiamOTP.Entities.SendOtpRequest.Message">
+            <example>Your OTP for verification is</example>
+        </member>
+        <member name="P:SuperbackCiamOTP.Entities.SendOtpRequest.TemplateId">
+            <example>c1a52602_8687_4104_97bd_71f593ee353c:spin_plus_otp_01</example>
+        </member>
+        <member name="P:SuperbackCiamOTP.Entities.SendOtpRequest.Type">
+            <example>NUMERIC</example>
+        </member>
+        <member name="P:SuperbackCiamOTP.Entities.SendOtpRequest.ServiceCode">
+            <example>254</example>
+        </member>
+        <member name="P:SuperbackCiamOTP.Entities.ValidateRequest.Otp">
+            <example>9354</example>
+        </member>
+        <member name="P:SuperbackCiamOTP.Entities.ValidateRequest.ServiceCode">
+            <example>onboarding</example>
+        </member>
+        <member name="P:SuperbackCiamOTP.Entities.RequestJwt.Username">
+            <summary>
+            The username can be a phone number or an email
+            </summary>
+            <example>+515555555555</example>
+        </member>
+        <member name="P:SuperbackCiamOTP.Entities.JwtResponse.Jwt">
+            <example>v1.McGUUd_CL7lc4UjVa2jlAgAG7lCyif14ItPqa_VyqXbeLfR1IpHdqu02QT3XuSsGekr0zfh3PJBszwsWGnC8lJw</example>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.TransaccionSmsType.OK">
+            <summary>
+            Sms request was apparently success
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.TransaccionSmsType.ERROR">
+            <summary>
+            Sms request was wrong
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.CodeResponseType.NOT_ALLOWED">
+            <summary>
+            Bad credentials
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.CodeResponseType.RETRY">
+            <summary>
+            Have to retry send the message
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.CodeResponseType.GERENIC_ERROR">
+            <summary>
+            Error without description
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.CodeResponseType.ANOTHER_ERROR">
+            <summary>
+            Error without description
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.CodeResponseType.TO_SEND">
+            <summary>
+            The message will send to soon
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.CodeResponseType.SENDED">
+            <summary>
+            the message was send
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.CodeResponseType.ERROR">
+            <summary>
+            Error without description
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.CodeResponseType.NO_MOVIL">
+            <summary>
+            the number is not a mobile number
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.CodeResponseType.INVALID_NUMBER">
+            <summary>
+            The number is invalid
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.CodeResponseType.BLACK_LIST">
+            <summary>
+            The number is there in blacklist
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.CodeResponseType.NOT_AVALIBLE_BLACK_LIST">
+            <summary>
+            The blacklist is not avalible
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.CodeResponseType.WITHOUT_BALANCE">
+            <summary>
+             Account with balance problems
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.OtpType.NUMERIC">
+            <summary>
+            Numeric.
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.ChannelType.EMAIL">
+            <summary>
+            Email channel.
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.ChannelType.SMS">
+            <summary>
+            Sms channel.
+            </summary>
+        </member>
+        <member name="F:SuperbackCiamOTP.Entities.ChannelType.WHATSAPP">
+            <summary>
+            Whatsapp channel.
+            </summary>
+        </member>
+        <member name="T:SuperbackCiamOTP.Managers.IndexCreationService">
+            <summary>
+            The most correct way to manage this is to spin the index creation out into a Hosted Service,
+            which will run when the app spins up. Create a HostedServices directory and add IndexCreationService.cs to that.
+            </summary>
+        </member>
+        <member name="M:SuperbackCiamOTP.Managers.JsonIgnoreResolver.CreateProperty(System.Reflection.MemberInfo,Newtonsoft.Json.MemberSerialization)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SuperbackCiamOTP.Resources.EmailTemplateResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+              This class was generated by MSBuild using the GenerateResource task.
+              To add or remove a member, edit your .resx file then rerun MSBuild.
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.EmailTemplateResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.EmailTemplateResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.EmailTemplateResources.spin_plus_email_verification">
+            <summary>
+              Looks up a localized string similar to  &quot;otp&quot;:&quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="T:SuperbackCiamOTP.Resources.OtpErrorResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+              This class was generated by MSBuild using the GenerateResource task.
+              To add or remove a member, edit your .resx file then rerun MSBuild.
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.ChannelType">
+            <summary>
+              Looks up a localized string similar to Channel Type: {0}. .
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.IsDeleteRedisStatus">
+            <summary>
+              Looks up a localized string similar to IsDeleteRedisStatus: {0} .
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.IsSaveRedisStatus">
+            <summary>
+              Looks up a localized string similar to IsSaveRedisStatus: {0}, TypeSend: {1}. .
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.MiddlewareException">
+            <summary>
+              Looks up a localized string similar to Status Code:{0} \n Message:{1} \n Is Development:{2}. .
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.OtpTypeError">
+            <summary>
+              Looks up a localized string similar to OtpTypeError: {0}. .
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.OtpTypeNotSupported">
+            <summary>
+              Looks up a localized string similar to Otp type not supported yet. .
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.RedisError">
+            <summary>
+              Looks up a localized string similar to Redis Error: {0}.
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.ResponseError">
+            <summary>
+              Looks up a localized string similar to Provider: {0} :  ResponseError: {1}. .
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.SendOtpError">
+            <summary>
+              Looks up a localized string similar to SendOtpError: Channel type not supported yet. .
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.SimpleEmailException">
+            <summary>
+              Looks up a localized string similar to SimpleEmailException:{0} .
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.SingleSendError">
+            <summary>
+              Looks up a localized string similar to Provider: {0} :  SingleSendError: {1}. .
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.SmsError">
+            <summary>
+              Looks up a localized string similar to SMS Error : {0}. .
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.TemplateEmailException">
+            <summary>
+              Looks up a localized string similar to TemplateEmailException:{0} .
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.TemplateError">
+            <summary>
+              Looks up a localized string similar to Provider: {0} :  CreateTemplateError: {1}. .
+            </summary>
+        </member>
+        <member name="P:SuperbackCiamOTP.Resources.OtpErrorResources.Unauthorized">
+            <summary>
+              Looks up a localized string similar to Unauthorized.
+            </summary>
+        </member>
+        <member name="M:SuperbackCiamOTP.Swagger.Attributes.RequiresAuthorizationAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SuperbackCiamOTP.Swagger.Attributes.RequiresAuthorizationAttribute"/> class.
+            </summary>
+            <param name="schemeId">Authorization scheme identifier</param>
+            <param name="scopes">Scope of authorization</param>
+        </member>
+        <member name="T:SuperbackCiamOTP.Validations.GenericMessages">
+            <summary>
+            Class to check if a number is valid and generic error messages for payload validations
+            </summary>
+        </member>
+        <member name="M:SuperbackCiamOTP.Validations.GenericMessages.PhoneNumberRegex">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match if at the beginning of the string.<br/>
+            ○ Match '0' through '9' atomically at least once.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:SuperbackCiamOTP.Validations.IsValidPhoneNumberAndEmailAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.PhoneNumberRegex_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the PhoneNumberRegex method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.PhoneNumberRegex_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PhoneNumberRegex_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.PhoneNumberRegex_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PhoneNumberRegex_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.PhoneNumberRegex_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PhoneNumberRegex_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PhoneNumberRegex_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PhoneNumberRegex_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+    </members>
+</doc>

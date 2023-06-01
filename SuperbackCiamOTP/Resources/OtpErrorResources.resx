@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="RedisError" xml:space="preserve">
+		<value>Redis Error: {0}</value>
+	</data>
+	<data name="SingleSendError" xml:space="preserve">
+		<value>Provider: {0} :  SingleSendError: {1}. </value>
+	</data>
+	<data name="SmsError" xml:space="preserve">
+		<value>SMS Error : {0}. </value>
+	</data>
+	<data name="TemplateError" xml:space="preserve">
+		<value>Provider: {0} :  CreateTemplateError: {1}. </value>
+	</data>
+	<data name="ResponseError" xml:space="preserve">
+	<value>Provider: {0} :  ResponseError: {1}. </value>
+	</data>
+	<data name="SendOtpError" xml:space="preserve">
+		<value>SendOtpError: Channel type not supported yet. </value>
+	</data>
+	<data name="OtpTypeError" xml:space="preserve">
+		<value>OtpTypeError: {0}. </value>
+	</data>	
+	<data name="IsSaveRedisStatus" xml:space="preserve">
+		<value>IsSaveRedisStatus: {0}, TypeSend: {1}. </value>
+	</data>
+	<data name="IsDeleteRedisStatus" xml:space="preserve">
+		<value>IsDeleteRedisStatus: {0} </value>
+	</data>
+	<data name="ChannelType" xml:space="preserve">
+		<value>Channel Type: {0}. </value>
+	</data>
+	<data name="OtpTypeNotSupported" xml:space="preserve">
+		<value>Otp type not supported yet. </value>
+	</data>
+	<data name="MiddlewareException" xml:space="preserve">
+		<value>Status Code:{0} \n Message:{1} \n Is Development:{2}. </value>
+	</data>
+	<data name="Unauthorized" xml:space="preserve">
+		<value>Unauthorized</value>
+	</data>
+	<data name="SimpleEmailException" xml:space="preserve">
+		<value>SimpleEmailException:{0} </value>
+	</data>
+	<data name="TemplateEmailException" xml:space="preserve">
+		<value>TemplateEmailException:{0} </value>
+	</data>
+</root>
+

@@ -3,7 +3,13 @@ info:
   title: SuperbackCiamOTP
   version: '1.0'
 paths:
-
+  /otp/api/health:
+    get:
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Success
   /otp/api/otp/send:
     post:
       tags:

@@ -1,0 +1,152 @@
+openapi: 3.0.1
+info:
+  title: SuperbackCiamOTP
+  version: '1.0'
+paths:
+  /otp/api/health:
+    get:
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Success
+  /otp/api/otp/send:
+    post:
+      tags:
+        - OTP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendOtpRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendOtpRequest'
+  /otp/api/otp/validate:
+    post:
+      tags:
+        - OTP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidOtpResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetails'
+  /otp/api/otp/readappsettings:
+    get:
+      tags:
+        - OTP
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidOtpResponse'
+components:
+  schemas:
+    ErrorDetails:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SendOtpRequest:
+      required:
+        - channel
+        - serviceCode
+        - type
+      type: object
+      properties:
+        phoneNumber:
+          maxLength: 14
+          minLength: 10
+          type: string
+          nullable: true
+          example: '5215555555555'
+        email:
+          type: string
+          format: email
+          nullable: true
+          example: AnyEmail@cool.domain.com
+        channel:
+          minLength: 1
+          type: string
+          example: SMS
+        message:
+          type: string
+          nullable: true
+          example: Your OTP for verification is
+        templateId:
+          type: string
+          nullable: true
+          example: c1a52602_8687_4104_97bd_71f593ee353c:spin_plus_otp_01
+        type:
+          maxLength: 15
+          minLength: 3
+          type: string
+          example: NUMERIC
+        serviceCode:
+          minLength: 1
+          type: string
+          example: '254'
+      additionalProperties: false
+    ValidOtpResponse:
+      required:
+        - accessToken
+      type: object
+      properties:
+        accessToken:
+          minLength: 1
+          type: string
+          example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZ
+      additionalProperties: false
+    ValidateRequest:
+      required:
+        - otp
+        - serviceCode
+      type: object
+      properties:
+        phoneNumber:
+          maxLength: 14
+          minLength: 10
+          type: string
+          nullable: true
+          example: '5215555555555'
+        email:
+          type: string
+          format: email
+          nullable: true
+          example: AnyEmail@cool.domain.com
+        otp:
+          minLength: 1
+          type: string
+          example: '9354'
+        serviceCode:
+          minLength: 1
+          type: string
+          example: onboarding
+      additionalProperties: false

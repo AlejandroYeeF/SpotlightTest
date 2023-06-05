@@ -13,8 +13,9 @@
         "**"
       ]
     },
-    "markdown": {
-      "rootDir": "SuperbackCiamOTP/docs"
+      "markdown": {
+      "rootDir": "docs",
+      "include": ["**"]
     },
     "image": {
       "rootDir": "assets/images"

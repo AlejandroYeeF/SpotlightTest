@@ -1,0 +1,236 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Swagger Demo Documentation",
+    "description": "This is a demo to see how documentation can easily be generated for ASP.NET Core Web APIs using Swagger and ReDoc.",
+    "contact": {
+      "name": "Christian Schou",
+      "email": "someemail@somedomain.com"
+    },
+    "version": "v1",
+    "x-logo": {
+      "url": "https://christian-schou.dk/wp-content/uploads/2021/09/cropped-cs-logo-color-retina.png",
+      "altText": "Your logo alt text here"
+    }
+  },
+  "paths": {
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "summary": "Return 5 random weather forecasts",
+        "description": "This endpoint will return 5 days of weather forecasts with random temperatures in celcius.",
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "Returns the weather forecasts",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/WeatherForecast/AddOrder": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Add a new order to the API",
+        "description": "This endpoint will take in a new order and return it to the client.",
+        "operationId": "AddOrder",
+        "requestBody": {
+          "description": "The order payload",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The posted order payload",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/WeatherForecast/GetOrder": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get an order by Order ID",
+        "description": "Use the endpoint to request an order by it's Order ID.",
+        "operationId": "GetOrder",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "query",
+            "description": "Order ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested order",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Order": {
+        "required": [
+          "Address",
+          "CustomerName",
+          "Id",
+          "OrderId",
+          "OrderValue"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "Unique ID",
+            "type": "integer",
+            "description": "This is the database ID and will be unique.",
+            "format": "int"
+          },
+          "orderId": {
+            "title": "Order ID",
+            "type": "integer",
+            "description": "This is the Order ID, identifying the specific order.",
+            "format": "int"
+          },
+          "customerName": {
+            "title": "Customer Full Name",
+            "type": "string",
+            "description": "Full name for customer placing the order.",
+            "format": "string",
+            "nullable": true
+          },
+          "address": {
+            "title": "Customer Address",
+            "type": "string",
+            "description": "Please include all details about customer address in this string.",
+            "format": "string",
+            "nullable": true
+          },
+          "orderValue": {
+            "title": "Total Order Value",
+            "type": "string",
+            "description": "Sub. Total Value for order placed by customer. Should have been a double :)",
+            "format": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Order Model"
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "WeatherForecast",
+      "description": "Get Weather forecast and place orders. Very weird and unstructed API :)"
+    }
+  ]
+}

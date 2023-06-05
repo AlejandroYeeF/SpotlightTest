@@ -1,6 +1,8 @@
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Interfaces;
 using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi.Writers;
+using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -50,11 +52,13 @@ if (app.Environment.IsDevelopment())
     options.SwaggerEndpoint("/swagger/v1/swagger.json",
     "Swagger Demo Documentation v1"));
 
-    app.UseReDoc(options =>
-    {
-        options.DocumentTitle = "Swagger Demo Documentation";
-        options.SpecUrl = "/swagger/v1/swagger.json";
-    });
+    var swaggerProvider = app.Services.GetRequiredService<ISwaggerProvider>();
+    var swagger = swaggerProvider.GetSwagger("v1");
+    var stringWriter = new StringWriter();
+    swagger.SerializeAsV3(new OpenApiJsonWriter(stringWriter));
+    var swaggerJson = stringWriter.ToString();
+    //La ruta y el nombre pueden ser cambiados
+    File.WriteAllText("swagger.json", swaggerJson);
 }
 
 app.UseHttpsRedirection();

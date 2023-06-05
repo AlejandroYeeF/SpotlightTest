@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "CIAM OTP docs",
+    "title": "CIAM OTP",
     "description": "This is a demo to see how documentation can easily be generated for ASP.NET Core Web APIs using Swagger and Stoplight.",
     "version": "v1",
   },

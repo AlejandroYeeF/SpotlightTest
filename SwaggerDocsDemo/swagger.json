@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "title": "CIAM OTP",
-    "description": "This is a demo to see how documentation can easily be generated for ASP.NET Core Web APIs using Swagger and Stoplight.",
-    "version": "v1",
+    "description": "This is a demo to see how documentation can easily be generated for ASP.NET Core Web APIs using Swagger and ReDoc.",
+    "version": "v1"
   },
   "paths": {
     "/WeatherForecast": {
@@ -12,16 +12,7 @@
           "WeatherForecast"
         ],
         "summary": "Return 5 random weather forecasts",
-
-  "info": {
-    "title": "CIAM OTP",
-    "description": "This is a demo to see how documentation can easily be generated for ASP.NET Core Web APIs using Swagger and Stoplight.",
-    "version": "v1",
-    "x-logo": {
-      "url": "https://christian-schou.dk/wp-content/uploads/2021/09/cropped-cs-logo-color-retina.png",
-      "altText": "Your logo alt text here"
-    }
-  },        "description": "This endpoint will return 5 days of weather forecasts with random temperatures in celcius.",
+        "description": "This endpoint will return 5 days of weather forecasts with random temperatures in celcius.",
         "operationId": "GetWeatherForecast",
         "responses": {
           "200": {

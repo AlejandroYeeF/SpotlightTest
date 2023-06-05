@@ -1,3 +1,7 @@
+---
+stoplight-id: 8ad7131ff6ab1
+---
+
 # Superback CIAM OTP 
 [![Run tests and checks](https://github.com/digitaltitransversal/tr_superback_ciam_otp/actions/workflows/ci.yml/badge.svg)](https://github.com/digitaltitransversal/tr_superback_ciam_otp/actions/workflows/ci.yml)
 

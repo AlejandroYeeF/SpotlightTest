@@ -4,9 +4,9 @@ stoplight-id: yhg20jd49tkhw
 
 # Quickstart
 
-En esta guía veremos como realizar solicitudes al API CIAM OTP.
+En esta guía veremos como realizar solicitudes al API OTP.
 
-**Paso 1: Crear una cuenta en de Spin Plus usando el API CIAM**
+**Paso 1: Crear una cuenta  usando el API CIAM**
 
 Crea una cuenta en el API de CIAM, etc.
 

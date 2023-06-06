@@ -6,23 +6,22 @@
     "version": "v1"
   },
   "paths": {
-    "/WeatherForecast": {
+    "/Order/GetOrders": {
       "get": {
         "tags": [
-          "WeatherForecast"
+          "Order"
         ],
-        "summary": "Return 5 random weather forecasts",
-        "description": "This endpoint will return 5 days of weather forecasts with random temperatures in celcius.",
-        "operationId": "GetWeatherForecast",
+        "summary": "Return all orders",
+        "description": "This endpoint will return all orders.",
         "responses": {
           "200": {
-            "description": "Returns the weather forecasts",
+            "description": "Returns all orders",
             "content": {
               "text/plain": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
+                    "$ref": "#/components/schemas/Order"
                   }
                 }
               },
@@ -30,7 +29,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
+                    "$ref": "#/components/schemas/Order"
                   }
                 }
               },
@@ -38,7 +37,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
+                    "$ref": "#/components/schemas/Order"
                   }
                 }
               }
@@ -47,7 +46,7 @@
         }
       }
     },
-    "/WeatherForecast/AddOrder": {
+    "/Order/AddOrder": {
       "post": {
         "tags": [
           "Order"
@@ -100,43 +99,40 @@
         }
       }
     },
-    "/WeatherForecast/GetOrder": {
+    "/WeatherForecast": {
       "get": {
         "tags": [
-          "Order"
+          "WeatherForecast"
         ],
-        "summary": "Get an order by Order ID",
-        "description": "Use the endpoint to request an order by it's Order ID.",
-        "operationId": "GetOrder",
-        "parameters": [
-          {
-            "name": "orderId",
-            "in": "query",
-            "description": "Order ID",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
+        "summary": "Return 3 random weather forecasts",
+        "description": "This endpoint will return 3 days of weather forecasts with random temperatures in celcius.",
+        "operationId": "GetWeatherForecast",
         "responses": {
           "200": {
-            "description": "The requested order",
+            "description": "Returns the weather forecasts",
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
                 }
               }
             }
@@ -220,6 +216,10 @@
     }
   },
   "tags": [
+    {
+      "name": "Order",
+      "description": "Get and insert orders"
+    },
     {
       "name": "WeatherForecast",
       "description": "Get Weather forecast and place orders. Very weird and unstructed API :)"

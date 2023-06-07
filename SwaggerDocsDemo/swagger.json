@@ -1,9 +1,17 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "CIAM OTP",
+    "title": "Swagger Demo Documentation",
     "description": "This is a demo to see how documentation can easily be generated for ASP.NET Core Web APIs using Swagger and ReDoc.",
-    "version": "v1"
+    "contact": {
+      "name": "Christian Schou",
+      "email": "someemail@somedomain.com"
+    },
+    "version": "v1",
+    "x-logo": {
+      "url": "https://christian-schou.dk/wp-content/uploads/2021/09/cropped-cs-logo-color-retina.png",
+      "altText": "Your logo alt text here"
+    }
   },
   "paths": {
     "/Order/GetOrders": {

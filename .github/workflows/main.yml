@@ -1,0 +1,26 @@
+name: Documentacion
+on:
+  push:
+    branches:
+    - main
+jobs:
+  build:
+    name: Crear Documentacion
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      id: git-checkhot
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Instalar Redoc CLI
+      run: npm install -g redoc-cli@latest
+    - name: Crear index.html
+      run: redoc-cli bundle SwaggerDocsDemo/documentation_ciam_otp.json --output ./index.html
+    - name: Deploy to GitHub Pages
+      # https://github.com/peaceiris/actions-gh-pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .
+        force_orphan: true

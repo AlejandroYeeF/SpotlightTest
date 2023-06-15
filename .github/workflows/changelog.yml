@@ -29,6 +29,7 @@ jobs:
         
     - name: Generate Changelog
       run: git log --pretty=format:"- %s" | tee changelog.md
+      
 
     - name: Actualizar rama main
       run: |

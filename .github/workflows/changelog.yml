@@ -21,14 +21,13 @@ jobs:
 
     - name: Build
       run: dotnet build --configuration Release
+      
+    - name: Fetch latest changes
+      run: git fetch origin
         
     - name: Generate Changelog
       run: |
         echo "Generating changelog..."
-        echo "git log --pretty=format:"- %s" origin/main..HEAD"
-        echo git log --pretty=format:"- %s" origin/main..HEAD
-        echo git log --pretty=format:"- %s"
-        
         changelog=$(git log --pretty=format:"- %s")
         echo "## Changelog" > changelog.md
         echo "${changelog}" >> changelog.md

@@ -1,43 +1,18 @@
-name: Autogenerar Changelog
+name: Generate Changelog
+
 on:
   push:
     branches:
-    - main
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' }}
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '7.0'
-
-    - name: Restore dependencies
-      run: dotnet restore
-
-    - name: Build
-      run: dotnet build --configuration Release
-      
-    - name: Fetch latest changes
-      run: |
-        git fetch origin
-        git pull origin main
-        
     - name: Generate Changelog
       run: git log --pretty=format:"- %s" | tee changelog.md
-      
-
-    - name: Actualizar rama main
-      run: |
-          git checkout main
-          if [[ -n $(git status -s) ]]; then
-              git add changelog.md
-              git -c user.name="Alejandro Yee Flores" -c user.email="alejandro.yee@digitalfemsa.com" commit -m "Updated changelog"
-              git push origin main
-          else
-             echo "No hay cambios para actualizar en la rama main."
-          fi
+ 

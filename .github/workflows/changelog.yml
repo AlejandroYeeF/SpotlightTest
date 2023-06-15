@@ -23,7 +23,9 @@ jobs:
       run: dotnet build --configuration Release
       
     - name: Fetch latest changes
-      run: git fetch origin
+      run: 
+        git fetch origin
+        git pull origin main
         
     - name: Generate Changelog
       run: |
@@ -32,7 +34,6 @@ jobs:
         echo "## Changelog" > changelog.md
         echo "${changelog}" >> changelog.md
         echo "Changelog generated."
-
 
     - name: Actualizar rama main
       run: |

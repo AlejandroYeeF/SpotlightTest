@@ -19,10 +19,6 @@ jobs:
     - name: Generate Changelog
       run: |
         git log --pretty=format:"- %s" | tee changelog.md
-        
-        for commit in $(git rev-list --format="%s" origin/main); do
-          commit
-        done
       
     - name: Actualizar rama main
       run: |

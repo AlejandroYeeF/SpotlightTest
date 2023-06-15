@@ -15,14 +15,13 @@ jobs:
         fetch-depth: 0
         
     - name: Generate Changelog
-      run: |
-        git log --pretty=format:"- %s" | tee changelog.md
+      run: git log --pretty=format:"- %s" > changelog.md
       
     - name: Actualizar rama main
       run: |
           git checkout main
           if [[ -n $(git status -s) ]]; then
-              git add changelog.md
+              git add .
               git -c user.name="Alejandro Yee Flores" -c user.email="alejandro.yee@digitalfemsa.com" commit -m "Updated changelog"
               git push origin main
           else

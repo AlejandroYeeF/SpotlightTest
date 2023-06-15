@@ -1,2 +1,1 @@
-## Changelog
-
+- Update changelog.yml

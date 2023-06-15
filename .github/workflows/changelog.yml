@@ -15,6 +15,4 @@ jobs:
       id: changelog
       run: |
         echo "Generating changelog..."
-        npm install -g conventional-changelog-cli
-        changelog=$(conventional-changelog -p angular)
-        echo "::set-output name=changelog::$changelog"
+        echo "${{ steps.changelog.outputs.changelog }}"

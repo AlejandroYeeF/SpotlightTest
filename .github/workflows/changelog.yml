@@ -23,7 +23,7 @@ jobs:
       run: dotnet build --configuration Release
       
     - name: Fetch latest changes
-      run: 
+      run: |
         git fetch origin
         git pull origin main
         

@@ -28,7 +28,7 @@ jobs:
         git pull origin main
         
     - name: Generate Changelog
-      run: git log --pretty=format:"- %s" > changelog.md
+      run: git log --pretty=format:"- %s" | tee changelog.md
 
     - name: Actualizar rama main
       run: |

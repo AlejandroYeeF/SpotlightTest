@@ -11,6 +11,17 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '7.0'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release
+        
     - name: Generate Changelog
       run: |
           echo "Generating changelog..."

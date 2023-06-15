@@ -13,15 +13,10 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.sha }}
         fetch-depth: 0
-      
-    - name: Fetch latest changes
-      run: |
-        git fetch origin
-        git pull origin main
         
     - name: Generate Changelog
       run: |
-        git log | tee changelog.md
+        git log --pretty=format:"- %s" | tee changelog.md
       
     - name: Actualizar rama main
       run: |

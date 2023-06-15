@@ -28,16 +28,7 @@ jobs:
         git pull origin main
         
     - name: Generate Changelog
-      run: |
-        echo "Generating changelog..."
-        changelog=""
-        while IFS= read -r line; do
-          changelog+="\n- $line"
-        done < <(git log --pretty=format:"%s")
-
-        echo "## Changelog" > changelog.md
-        echo -e "$changelog" >> changelog.md
-        echo "Changelog generated."
+      run: git log --pretty=format:"- %s" > changelog.md
 
     - name: Actualizar rama main
       run: |

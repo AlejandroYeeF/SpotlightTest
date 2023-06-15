@@ -24,11 +24,12 @@ jobs:
         
     - name: Generate Changelog
       run: |
-          echo "Generating changelog..."
-          changelog=$(git log --pretty=format:"- %s" $(git describe --tags --abbrev=0)..HEAD)
-          echo "## Changelog" > changelog.md
-          echo "${changelog}" >> changelog.md
-          echo "Changelog generated."
+        echo "Generating changelog..."
+        changelog=$(git log --pretty=format:"- %s" origin/main..HEAD)
+        echo "## Changelog" > changelog.md
+        echo "${changelog}" >> changelog.md
+        echo "Changelog generated."
+
 
     - name: Actualizar rama main
       run: |

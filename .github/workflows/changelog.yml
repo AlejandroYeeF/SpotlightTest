@@ -14,5 +14,13 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Generate Changelog
-      run: git log --pretty=format:"- %s" | tee changelog.md
- 
+      run: |
+        echo "Generating changelog..."
+        changelog=""
+        for commit in $(git rev-list --format="%s" origin/main); do
+          changelog+="\n- $commit"
+        done
+
+        echo "## Changelog" > changelog.md
+        echo -e "$changelog" >> changelog.md
+        echo "Changelog generated."

@@ -34,16 +34,9 @@ jobs:
       run: |
         git log --pretty=format:"- %s" | tee changelog.md
         
-        changelog=""
         for commit in $(git rev-list --format="%s" origin/main); do
           commit
-          changelog+="\n- $commit"
         done
-        changelog
-        
-        echo "## Changelog" > changelog.md
-        echo -e "$changelog" >> changelog.md
-        echo "Changelog generated."
       
     - name: Actualizar rama main
       run: |

@@ -16,7 +16,7 @@ jobs:
         
     - name: Generate Changelog
       run: |
-        git log --oneline | tee changelog.md
+        git log --oneline --decorate | tee changelog.md
       
     - name: Actualizar rama main
       run: |

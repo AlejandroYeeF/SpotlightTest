@@ -20,7 +20,7 @@ namespace SwaggerDocsDemo.Controllers
         }
 
         /// <summary>
-        /// Return all orders
+        /// Return orders
         /// </summary>
         /// <remarks>
         /// This endpoint will return all orders.

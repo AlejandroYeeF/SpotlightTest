@@ -1,3 +1,5 @@
+- updated get orders summary (#1)
+- Updated changelog
 - Create mergeable.yml
 - Updated changelog
 - Update changelog.yml

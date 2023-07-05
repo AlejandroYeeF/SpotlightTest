@@ -1,19 +1,27 @@
-version: 2
-mergeable:
-  - when: pull_request.*
-    validate:
-      - do: description
-        no_empty:
-          enabled: true
-          message: Description matter and should not be empty. Provide detail with **what** was changed, **why** it was changed, and **how** it was changed.
-      - do: title
-        must_include:
-          regex: ^(\[DEVELOP\]|\[FEATURE\]|\[HOTFIX\]|\[RELEASE\]) [a-zA-Z0-9]+.*
-      - do: headRef
-        must_include:
-          regex: '^(develop|feature|hotfix|release)\/[a-zA-Z]+-[0-9]+-.*'
-          message: 'Your branch name should be like feature/SOME-TICKET-NUMBER-some-description'
-      - do: approvals
-        min:
-          count: 1
-          message: 'The pull request must be aproved by minimum 1 reviewers'
+name: Validar Pull Request
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Verificar título y descripción
+        run: |
+          title_regex="^(feat|fix|hotfix|bug|doc)\/[A-Z]{2,5}-\d{2,5}:\s.+"
+          description_regex="^(develop|feature|hotfix|release)\/[a-zA-Z]+-[0-9]+-.*"
+          
+          if ! [[ "${{ github.event.pull_request.title }}" =~ $title_regex ]]; then
+            echo "El título del pull request no cumple con el formato especificado."
+            exit 1
+          fi
+          
+          if ! [[ "${{ github.event.pull_request.body }}" =~ $description_regex ]]; then
+            echo "La descripción del pull request no cumple con el formato especificado."
+            exit 1
+          fi

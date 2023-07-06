@@ -12,9 +12,11 @@ jobs:
       - name: Verificar título y descripción
         run: |
           title_regex="^(\[DEVELOP\]|\[FEATURE\]|\[HOTFIX\]|\[RELEASE\]) [a-zA-Z0-9]+.*"
+          title="${{ github.event.pull_request.title }}"
           description="${{ github.event.pull_request.body }}"
           
-          echo github.event.pull_request.title
+          echo "Título del pull request: $title"
+
           if ! [[ "${{ github.event.pull_request.title }}" =~ $title_regex ]]; then
             echo "El título del pull request no cumple con el formato especificado."
             exit 1

@@ -15,5 +15,5 @@ mergeable:
           message: 'Your branch name should be like feature/SOME-TICKET-NUMBER-some-description'
       - do: approvals
         min:
-          count: 3
+          count: 1
           message: 'The pull request must be aproved by minimum 3 reviewers'

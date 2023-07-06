@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Verificar título y descripción
         run: |
-          title_regex="^(feat|fix|hotfix|bug|doc)\/[A-Z]{2,5}-\d{2,5}:\s.+"
+          title_regex="^(\[DEVELOP\]|\[FEATURE\]|\[HOTFIX\]|\[RELEASE\]) [a-zA-Z0-9]+.*"
           description_regex="^(develop|feature|hotfix|release)\/[a-zA-Z]+-[0-9]+-.*"
           
           if ! [[ "${{ github.event.pull_request.title }}" =~ $title_regex ]]; then

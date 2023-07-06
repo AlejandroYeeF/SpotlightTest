@@ -1,3 +1,11 @@
+- Update mergeable.yml
+- Updated changelog
+- Create mergeable.yml
+- Updated changelog
+- Updated commit message (#2)
+- Updated changelog
+- updated get orders summary (#1)
+- Updated changelog
 - Create mergeable.yml
 - Updated changelog
 - Update changelog.yml

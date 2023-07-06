@@ -14,14 +14,14 @@ jobs:
       - name: Verificar título y descripción
         run: |
           title_regex="^(\[DEVELOP\]|\[FEATURE\]|\[HOTFIX\]|\[RELEASE\]) [a-zA-Z0-9]+.*"
-          description_regex="^(develop|feature|hotfix|release)\/[a-zA-Z]+-[0-9]+-.*"
+          description="${{ github.event.pull_request.body }}"
           
           if ! [[ "${{ github.event.pull_request.title }}" =~ $title_regex ]]; then
             echo "El título del pull request no cumple con el formato especificado."
             exit 1
           fi
           
-          if ! [[ "${{ github.event.pull_request.body }}" =~ $description_regex ]]; then
-            echo "La descripción del pull request no cumple con el formato especificado."
+          if [[ -z "$description" ]]; then
+            echo "La descripción del pull request está vacía."
             exit 1
           fi

@@ -1,3 +1,5 @@
+- Update mergeable.yml
+- Updated changelog
 - Create mergeable.yml
 - Updated changelog
 - Updated commit message (#2)

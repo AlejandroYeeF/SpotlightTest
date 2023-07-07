@@ -8,7 +8,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace SwaggerDocsDemo.Controllers
 {
     /// <summary>
-    /// Orders
+    /// Orders controller
     /// </summary>
     [ApiController]
     [Route("[controller]")]

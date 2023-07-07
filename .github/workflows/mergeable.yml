@@ -1,11 +1,9 @@
 name: Validar Pull Request
-
 on:
   pull_request_target:
     types:
       - opened
       - synchronize
-
 jobs:
   validation:
     runs-on: ubuntu-latest
@@ -18,7 +16,7 @@ jobs:
           description="${{ github.event.pull_request.body }}"
           
           echo "Título del pull request: $title"
-          
+
           if ! [[ "${{ github.event.pull_request.title }}" =~ $title_regex ]]; then
             echo "El título del pull request no cumple con el formato especificado."
             exit 1

@@ -16,14 +16,3 @@ jobs:
         
     - name: Generate Changelog
       run: git log --pretty=format:"- %s" > changelog.md
-      
-    - name: Actualizar rama main
-      run: |
-          git checkout main
-          if [[ -n $(git status -s) ]]; then
-              git add .
-              git -c user.name="Alejandro Yee Flores" -c user.email="alejandro.yee@digitalfemsa.com" commit -m "Updated changelog"
-              git push origin main
-          else
-             echo "No hay cambios para actualizar en la rama main."
-          fi

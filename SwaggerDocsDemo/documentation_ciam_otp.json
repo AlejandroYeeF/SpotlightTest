@@ -1,0 +1,159 @@
+openapi: 3.0.1
+info:
+  title: OTP Documentation
+  description: "# Getting Started\nWelcome to the OTP API reference. You can use these APIs to interact with the Sumo Logic platform. For information on the collector and search APIs see our [API home page](https://help.sumologic.com/APIs).\n## API Endpoints\nSumo Logic has several deployments in different geographic locations. You'll need to use the Sumo Logic API endpoint corresponding to your geographic location. See the table below for the different API endpoints by deployment. For details determining your account's deployment see [API endpoints](https://help.sumologic.com/?cid=3011).\n\n  <table>\n    <tr>\n      <td> <strong>Deployment</strong> </td>\n      <td> <strong>Endpoint</strong> </td>\n    </tr>\n    <tr>\n      <td> AU </td>\n      <td> https://api.au.sumologic.com/api/ </td>\n    </tr>\n    <tr>\n      <td> CA </td>\n      <td> https://api.ca.sumologic.com/api/ </td>\n    </tr>\n    <tr>\n      <td> DE </td>\n      <td> https://api.de.sumologic.com/api/ </td>\n    </tr>\n    <tr>\n      <td> EU </td>\n      <td> https://api.eu.sumologic.com/api/ </td>\n    </tr>\n    <tr>\n      <td> FED </td>\n      <td> https://api.fed.sumologic.com/api/ </td>\n    </tr>\n    <tr>\n      <td> IN </td>\n      <td> https://api.in.sumologic.com/api/ </td>\n    </tr>\n    <tr>\n      <td> JP </td>\n      <td> https://api.jp.sumologic.com/api/ </td>\n    </tr>\n    <tr>\n      <td> US1 </td>\n      <td> https://api.sumologic.com/api/ </td>\n    </tr>\n    <tr>\n      <td> US2 </td>\n      <td> https://api.us2.sumologic.com/api/ </td>\n    </tr>\n  </table>\n\n## Authentication\nSumo Logic supports the following options for API authentication:\n- Access ID and Access Key\n- Base64 encoded Access ID and Access Key\n\nSee [Access Keys](https://help.sumologic.com/Manage/Security/Access-Keys) to generate an Access Key. Make sure to copy the key you create, because it is displayed only once.\nWhen you have an Access ID and Access Key you can execute requests such as the following:\n  ```bash\n  curl -u \"<accessId>:<accessKey>\" -X GET https://api.<deployment>.sumologic.com/api/v1/users\n  ```\n\nWhere `deployment` is either `au`, `ca`, `de`, `eu`, `fed`, `in`, `jp`, `us1`, or `us2`. See [API endpoints](#section/API-Endpoints) for details.\n\nIf you prefer to use basic access authentication, you can do a Base64 encoding of your `<accessId>:<accessKey>` to authenticate your HTTPS request. The following is an example request, replace the placeholder `<encoded>` with your encoded Access ID and Access Key string:\n  ```bash\n  curl -H \"Authorization: Basic <encoded>\" -X GET https://api.<deployment>.sumologic.com/api/v1/users\n  ```\n\n\nRefer to [API Authentication](https://help.sumologic.com/?cid=3012) for a Base64 example.\n\n## Status Codes\nGeneric status codes that apply to all our APIs. See the [HTTP status code registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) for reference.\n  <table>\n    <tr>\n      <td> <strong>HTTP Status Code</strong> </td>\n      <td> <strong>Error Code</strong> </td>\n      <td> <strong>Description</strong> </td>\n    </tr>\n    <tr>\n      <td> 301 </td>\n      <td> moved </td>\n      <td> The requested resource SHOULD be accessed through returned URI in Location Header. See [troubleshooting](https://help.sumologic.com/APIs/Troubleshooting-APIs/API-301-Error-Moved) for details.</td>\n    </tr>\n    <tr>\n      <td> 401 </td>\n      <td> unauthorized </td>\n      <td> Credential could not be verified.</td>\n    </tr>\n    <tr>\n      <td> 403 </td>\n      <td> forbidden </td>\n      <td> This operation is not allowed for your account type or the user doesn't have the role capability to perform this action. See [troubleshooting](https://help.sumologic.com/APIs/Troubleshooting-APIs/API-403-Error-This-operation-is-not-allowed-for-your-account-type) for details.</td>\n    </tr>\n    <tr>\n      <td> 404 </td>\n      <td> notfound </td>\n      <td> Requested resource could not be found. </td>\n    </tr>\n    <tr>\n      <td> 405 </td>\n      <td> method.unsupported </td>\n      <td> Unsupported method for URL. </td>\n    </tr>\n    <tr>\n      <td> 415 </td>\n      <td> contenttype.invalid </td>\n      <td> Invalid content type. </td>\n    </tr>\n    <tr>\n      <td> 429 </td>\n      <td> rate.limit.exceeded </td>\n      <td> The API request rate is higher than 4 request per second or inflight API requests are higher than 10 request per second. </td>\n    </tr>\n    <tr>\n      <td> 500 </td>\n      <td> internal.error </td>\n      <td> Internal server error. </td>\n    </tr>\n    <tr>\n      <td> 503 </td>\n      <td> service.unavailable </td>\n      <td> Service is currently unavailable. </td>\n    </tr>\n  </table>\n\n## Filtering\nSome API endpoints support filtering results on a specified set of fields. Each endpoint that supports filtering will list the fields that can be filtered. Multiple fields can be combined by using an ampersand `&` character.\n\nFor example, to get 20 users whose `firstName` is `John` and `lastName` is `Doe`:\n  ```bash\n  api.sumologic.com/v1/users?limit=20&firstName=John&lastName=Doe\n  ```\n\n## Sorting\nSome API endpoints support sorting fields by using the `sortBy` query parameter. The default sort order is ascending. Prefix the field with a minus sign `-` to sort in descending order.\n\nFor example, to get 20 users sorted by their `email` in descending order:\n  ```bash\n  api.sumologic.com/v1/users?limit=20&sort=-email\n  ```\n\n## Asynchronous Request\nAsynchronous requests do not wait for results, instead they immediately respond back with a job identifier while the job runs in the background. You can use the job identifier to track the status of the asynchronous job request. Here is a typical flow for an asynchronous request.\n1. Start an asynchronous job. On success, a job identifier is returned. The job identifier uniquely identifies\n  your asynchronous job.\n\n2. Once started, use the job identifier from step 1 to track the status of your asynchronous job. An asynchronous\n  request will typically provide an endpoint to poll for the status of asynchronous job. A successful response\n  from the status endpoint will have the following structure:\n  ```json\n  {\n      \"status\": \"Status of asynchronous request\",\n      \"statusMessage\": \"Optional message with additional information in case request succeeds\",\n      \"error\": \"Error object in case request fails\"\n  }\n  ```\n  The `status` field can have one of the following values:\n    1. `Success`: The job succeeded. The `statusMessage` field might have additional information.\n    2. `InProgress`: The job is still running.\n    3. `Failed`: The job failed. The `error` field in the response will have more information about the failure.\n\n3. Some asynchronous APIs may provide a third endpoint (like [export result](#operation/getAsyncExportResult))\n  to fetch the result of an asynchronous job.\n\n\n### Example\nLet's say we want to export a folder with the identifier `0000000006A2E86F`. We will use the [async export](#operation/beginAsyncExport) API to export all the content under the folder with `id=0000000006A2E86F`.\n1. Start an export job for the folder\n  ```bash\n  curl -X POST -u \"<accessId>:<accessKey>\" https://api.<deployment>.sumologic.com/api/v2/content/0000000006A2E86F/export\n  ```\n  See [authentication section](#section/Authentication) for more details about `accessId`, `accessKey`, and\n  `deployment`.\n  On success, you will get back a job identifier. In the response below, `C03E086C137F38B4` is the job identifier.\n  ```bash\n  {\n      \"id\": \"C03E086C137F38B4\"\n  }\n  ```\n\n2. Now poll for the status of the asynchronous job with the [status](#operation/getAsyncExportStatus) endpoint.\n  ```bash\n  curl -X GET -u \"<accessId>:<accessKey>\" https://api.<deployment>.sumologic.com/api/v2/content/0000000006A2E86F/export/C03E086C137F38B4/status\n  ```\n  You may get a response like\n  ```json\n  {\n      \"status\": \"InProgress\",\n      \"statusMessage\": null,\n      \"error\": null\n  }\n  ```\n  It implies the job is still in progress. Keep polling till the status is either `Success` or `Failed`.\n\n3. When the asynchronous job completes (`status != \"InProgress\"`), you can fetch the results with the\n  [export result](#operation/getAsyncExportResult) endpoint.\n  ```bash\n  curl -X GET -u \"<accessId>:<accessKey>\" https://api.<deployment>.sumologic.com/api/v2/content/0000000006A2E86F/export/C03E086C137F38B4/result\n  ```\n\n  The asynchronous job may fail (`status == \"Failed\"`). You can look at the `error` field for more details.\n  ```json\n  {\n      \"status\": \"Failed\",\n      \"errors\": {\n          \"code\": \"content1:too_many_items\",\n          \"message\": \"Too many objects: object count(1100) was greater than limit 1000\"\n      }\n  }\n  ```\n\n\n## Rate Limiting\n* A rate limit of four API requests per second (240 requests per minute) applies to all API calls from a user.\n* A rate limit of 10 concurrent requests to any API endpoint applies to an access key.\n\nIf a rate is exceeded, a rate limit exceeded 429 status code is returned.\n\n## Generating Clients\nYou can use [OpenAPI Generator](https://openapi-generator.tech) to generate clients from the YAML file to access the API.\n\n### Using [NPM](https://www.npmjs.com/get-npm)\n1. Install [NPM package wrapper](https://github.com/openapitools/openapi-generator-cli) globally, exposing the CLI\n  on the command line:\n  ```bash\n  npm install @openapitools/openapi-generator-cli -g\n  ```\n  You can see detailed instructions [here](https://openapi-generator.tech/docs/installation#npm).\n\n2. Download the [YAML file](/docs/sumologic-api.yaml) and save it locally. Let's say the file is saved as `sumologic-api.yaml`.\n3. Use the following command to generate `python` client inside the `sumo/client/python` directory:\n  ```bash\n  openapi-generator generate -i sumologic-api.yaml -g python -o sumo/client/python\n  ```\n\n\n### Using [Homebrew](https://brew.sh/)\n1. Install OpenAPI Generator\n  ```bash\n  brew install openapi-generator\n  ```\n\n2. Download the [YAML file](/docs/sumologic-api.yaml) and save it locally. Let's say the file is saved as `sumologic-api.yaml`.\n3. Use the following command to generate `python` client side code inside the `sumo/client/python` directory:\n  ```bash\n  openapi-generator generate -i sumologic-api.yaml -g python -o sumo/client/python\n  ```\n"
+  contact:
+    name: GMC
+    email: someemail@somedomain.com
+  version: v1
+  x-logo:
+    url: https://www.femsa.com/wp-content/uploads/2022/05/digital-at-femsa-logotype-h-blk-2048x550.png
+    altText: Your logo alt text here
+paths:
+  /Order/GetOrders:
+    get:
+      tags:
+        - Order
+      summary: Return all orders
+      description: This endpoint will return all orders.
+      responses:
+        '200':
+          description: Returns all orders
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+  /Order/AddOrder:
+    post:
+      tags:
+        - Order
+      summary: Add a new order to the API
+      description: This endpoint will take in a new order and return it to the client.
+      operationId: AddOrder
+      requestBody:
+        description: The order payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      responses:
+        '200':
+          description: The posted order payload
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /WeatherForecast:
+    get:
+      tags:
+        - WeatherForecast
+      summary: Return 3 random weather forecasts
+      description: This endpoint will return 3 days of weather forecasts with random temperatures in celcius.
+      operationId: GetWeatherForecast
+      responses:
+        '200':
+          description: Returns the weather forecasts
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WeatherForecast'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WeatherForecast'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WeatherForecast'
+components:
+  schemas:
+    Order:
+      required:
+        - Address
+        - CustomerName
+        - Id
+        - OrderId
+        - OrderValue
+      type: object
+      properties:
+        id:
+          title: Unique ID
+          type: integer
+          description: This is the database ID and will be unique.
+          format: int
+        orderId:
+          title: Order ID
+          type: integer
+          description: 'This is the Order ID, identifying the specific order.'
+          format: int
+        customerName:
+          title: Customer Full Name
+          type: string
+          description: Full name for customer placing the order.
+          format: string
+          nullable: true
+        address:
+          title: Customer Address
+          type: string
+          description: Please include all details about customer address in this string.
+          format: string
+          nullable: true
+        orderValue:
+          title: Total Order Value
+          type: string
+          description: Sub. Total Value for order placed by customer. Should have been a double :)
+          format: string
+          nullable: true
+      additionalProperties: false
+      description: Order Model
+    WeatherForecast:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        temperatureC:
+          type: integer
+          format: int32
+        temperatureF:
+          type: integer
+          format: int32
+          readOnly: true
+        summary:
+          type: string
+          nullable: true
+      additionalProperties: false
+tags:
+  - name: Order
+    description: Get and insert orders
+  - name: WeatherForecast
+    description: Get Weather forecast and place orders. Very weird and unstructed API :)

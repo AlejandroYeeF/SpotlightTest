@@ -1,3 +1,5 @@
+- [HOTFIX] Update yml (#9)
+- Updated changelog
 - Update mergeable.yml
 - Updated changelog
 - Update mergeable.yml
